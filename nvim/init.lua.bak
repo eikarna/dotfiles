@@ -1,0 +1,66 @@
+-- ===============================
+-- Minimal init.lua untuk Neovim
+-- Pastikan Neovim versi >= 0.5 untuk dukungan Lua
+-- ===============================
+
+-- Optimasi Performansi: Nonaktifkan provider yang tidak digunakan
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+-- vim.g.loaded_node_provider = 0  -- jika ingin nonaktifkan, hapus komentar
+
+-- Pengaturan Dasar
+vim.opt.number = true                    -- Tampilkan nomor baris
+vim.opt.relativenumber = true            -- Nomor relatif untuk navigasi yang lebih mudah
+vim.opt.tabstop = 4                      -- Lebar tab = 4 spasi
+vim.opt.shiftwidth = 4                   -- Indentasi = 4 spasi
+vim.opt.expandtab = true                 -- Konversi tab ke spasi
+vim.opt.autoindent = true                -- Auto indent baris baru
+vim.opt.clipboard = "unnamedplus"        -- Gunakan clipboard sistem
+
+vim.cmd("syntax on")                     -- Aktifkan syntax highlighting
+vim.cmd("filetype plugin indent on")     -- Aktifkan deteksi filetype dan plugin terkait
+
+-- Bootstrap lazy.nvim jika belum terinstal
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- gunakan rilis stabil terbaru
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup plugin menggunakan lazy.nvim
+require("lazy").setup({
+  { "tpope/vim-sensible" },
+  { "junegunn/vim-easy-align" },
+  { "folke/tokyonight.nvim" },
+  { "fatih/vim-go" },
+  {
+    "Saghen/blink.cmp",  -- Plugin blink.cmp
+    version = '*',
+    event = "InsertEnter",  -- Lazy-load saat kamu masuk ke mode insert
+    fuzzy = { implementation = "rust" }
+  }
+}, {})
+
+-- Konfigurasi Tema Tokyo Night dengan Lua
+require("tokyonight").setup({
+  styles = {
+    comments = { italic = false },
+    keywords = { italic = false },
+  },
+})
+
+vim.cmd("colorscheme tokyonight-night")
+
+-- Konfigurasi blink.cmp
+require("blink-cmp").setup({
+  -- Contoh opsi konfigurasi, kamu bisa sesuaikan dengan kebutuhan:
+  completion = { documentation = { auto_show = false } },
+  -- Opsi lainnya bisa kamu tambahkan di sini
+})
