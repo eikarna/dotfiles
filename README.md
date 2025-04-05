@@ -19,5 +19,3 @@ cp -r ./ <destination>
 
 ## License
 This reporesitory is under the [CreativeCommons Zero v1.0 Universal license](./LICENSE).
-
-###### Last Updated: 2025-04-01

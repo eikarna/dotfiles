@@ -28,7 +28,6 @@ require("lazy").setup({
   },
   {
     "milanglacier/minuet-ai.nvim",
-    event = "InsertEnter",
     config = function()
       require("minuet").setup({
         cmp = {
@@ -38,7 +37,8 @@ require("lazy").setup({
           enable_auto_complete = true,
         },
         virtualtext = {
-          auto_trigger_ft = { "python", "lua", "c", "cpp", "markdown", "go" },
+          -- auto_trigger_ft = { "python", "lua", "c", "cpp", "markdown", "go" },
+          auto_trigger_ft = { "*" },
           keymap = {
             accept = "<A-a>",
             accept_line = "<A-A>",
@@ -47,14 +47,15 @@ require("lazy").setup({
             dismiss = "<A-e>",
           },
         },
-        n_completions = 1,
+        throttle = 3000,
+        debounce = 1000,
         provider = "gemini",
         provider_options = {
           gemini = {
-            model = "gemini-2.0-flash",
+            model = "gemini-2.0-flash-thinking-exp-01-21",
             stream = true,
-            api_key = function() return "YOUR_GEMINI_API_KEY" end,
-            max_tokens = 1024,
+            api_key = "GEMINI_API_KEY",
+            max_tokens = 2048,
             request_timeout = 3,
           },
         },
