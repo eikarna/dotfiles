@@ -16,10 +16,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  { "hat0uma/csvview.nvim" },
   { "tpope/vim-sensible" },
   { "junegunn/vim-easy-align" },
   { "folke/tokyonight.nvim" },
   { "fatih/vim-go" },
+  { "nvim-treesitter/nvim-treesitter" },
+  { "stevearc/conform.nvim", event = { "BufReadPre", "BufNewFile" }},
+  { "MagicDuck/grug-far.nvim" },
+  { "echasnovski/mini.icons", version = '*' },
   {
     "Saghen/blink.cmp",  -- Plugin blink.cmp
     version = '*',
@@ -52,9 +57,9 @@ require("lazy").setup({
         provider = "gemini",
         provider_options = {
           gemini = {
-            model = "gemini-2.0-flash-thinking-exp-01-21",
+            model = "gemini-2.0-flash",
             stream = true,
-            api_key = "GEMINI_API_KEY",
+            api_key = function() return "" end,
             max_tokens = 2048,
             request_timeout = 3,
           },
@@ -64,4 +69,5 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   { "nvim-lua/plenary.nvim" },
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 })

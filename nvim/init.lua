@@ -15,3 +15,9 @@ require("user.blinkcmp")
 
 -- Konfigurasi plugin minuet-ai
 -- require("user.minuet-ai")
+
+-- Konfigurasi nvim-treesitter
+require("user.nvim-treesitter")
+
+-- Konfigurasi bufferline
+require("user.bufferline")
