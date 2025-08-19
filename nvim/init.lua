@@ -21,3 +21,9 @@ require("user.nvim-treesitter")
 
 -- Konfigurasi bufferline
 require("user.bufferline")
+
+-- Konfigurasi CopilotChat
+-- require("user.copilotC")
+
+-- Konfigurasi Render Markdown
+require("user.render-markdown")

@@ -8,3 +8,7 @@ require("tokyonight").setup({
   },
 })
 vim.cmd("colorscheme tokyonight-night")
+
+-- Copilot Chat colorscheme
+vim.api.nvim_set_hl(0, 'CopilotChatHeader', { fg = '#7C3AED', bold = true })
+vim.api.nvim_set_hl(0, 'CopilotChatSeparator', { fg = '#374151' })

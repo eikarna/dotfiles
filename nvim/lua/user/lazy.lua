@@ -20,7 +20,6 @@ require("lazy").setup({
   { "tpope/vim-sensible" },
   { "junegunn/vim-easy-align" },
   { "folke/tokyonight.nvim" },
-  { "fatih/vim-go" },
   { "nvim-treesitter/nvim-treesitter" },
   { "stevearc/conform.nvim", event = { "BufReadPre", "BufNewFile" }},
   { "MagicDuck/grug-far.nvim" },
@@ -52,15 +51,15 @@ require("lazy").setup({
             dismiss = "<A-e>",
           },
         },
-        throttle = 3000,
-        debounce = 1000,
+        throttle = 5000,
+        debounce = 3000,
         provider = "gemini",
         provider_options = {
           gemini = {
-            model = "gemini-2.0-flash",
+            model = "gemini-2.5-flash",
             stream = true,
-            api_key = function() return "" end,
-            max_tokens = 2048,
+            api_key = function() return "AIzaSyA3huRO_MTNhMshNEBUng4aDk9PhsmndVI" end,
+            max_tokens = 1000000,
             request_timeout = 3,
           },
         },
@@ -70,4 +69,13 @@ require("lazy").setup({
   },
   { "nvim-lua/plenary.nvim" },
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
 })
