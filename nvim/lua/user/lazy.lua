@@ -58,7 +58,7 @@ require("lazy").setup({
           gemini = {
             model = "gemini-2.5-flash",
             stream = true,
-            api_key = function() return "AIzaSyA3huRO_MTNhMshNEBUng4aDk9PhsmndVI" end,
+            api_key = function() return os.getenv("GEMINI_API_KEY") or "" end,
             max_tokens = 1000000,
             request_timeout = 3,
           },
@@ -69,13 +69,17 @@ require("lazy").setup({
   },
   { "nvim-lua/plenary.nvim" },
   {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {},
-  },
+   {
+     'MeanderingProgrammer/render-markdown.nvim',
+     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
+     ---@module 'render-markdown'
+     ---@type render.md.UserConfig
+     opts = {},
+   },
+   {
+      "neoclide/coc.nvim",
+      branch = "release",
+      build = "pnpm install", -- atau "yarn install --frozen-lockfile" kalau ada yarn 
+      event = "VeryLazy", -- biar nggak makan resource pas startup 
+   },
 })

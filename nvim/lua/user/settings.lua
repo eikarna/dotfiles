@@ -38,22 +38,22 @@ vim.keymap.set("n", "<leader>f", function()
   require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file" })
 
--- Quick chat keybinding
-vim.keymap.set('n', '<leader>ccq', function()
-  local input = vim.fn.input("Quick Chat: ")
-  if input ~= "" then
-    require("CopilotChat").ask(input, {
-      selection = require("CopilotChat.select").buffer
-    })
-  end
-end, { desc = "CopilotChat - Quick chat" })
+-- Quick chat keybinding (uncomment jika CopilotChat diaktifkan)
+-- vim.keymap.set('n', '<leader>ccq', function()
+--   local input = vim.fn.input("Quick Chat: ")
+--   if input ~= "" then
+--     require("CopilotChat").ask(input, {
+--       selection = require("CopilotChat.select").buffer
+--     })
+--   end
+-- end, { desc = "CopilotChat - Quick chat" })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>ccs', function()
-  local input = vim.fn.input("Perplexity: ")
-  if input ~= "" then
-    require("CopilotChat").ask(input, {
-      agent = "perplexityai",
-      selection = false,
-    })
-  end
-end, { desc = "CopilotChat - Perplexity Search" })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>ccs', function()
+--   local input = vim.fn.input("Perplexity: ")
+--   if input ~= "" then
+--     require("CopilotChat").ask(input, {
+--       agent = "perplexityai",
+--       selection = false,
+--     })
+--   end
+-- end, { desc = "CopilotChat - Perplexity Search" })
