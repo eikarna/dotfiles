@@ -5,6 +5,7 @@ end
 # Global Variables
 set -Ux TZ "Asia/Jakarta"
 set -Ux GEMINI_API_KEY ""
+set -Ux EDITOR "nvim"
 
 # ===========================
 # Fish config (ported from .bashrc)
@@ -89,3 +90,6 @@ function fish_prompt
 
     echo -n " ❯ "
 end
+
+# PNPM Binary Path
+fish_add_path ~/.local/share/pnpm
